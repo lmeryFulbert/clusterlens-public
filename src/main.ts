@@ -8,6 +8,8 @@ import { registerRoutes } from "./routes/index.js";
 
 async function bootstrap(): Promise<void> {
 
+  const isDevelopment = process.env.NODE_ENV !== "production";
+  
   const app = Fastify({
     logger: {
       level: "info",
