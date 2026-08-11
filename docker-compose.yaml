@@ -1,0 +1,20 @@
+services:
+  clusterlens:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: clusterlens
+
+    restart: unless-stopped
+
+    ports:
+      - "${CLUSTERLENS_PORT:-3000}:3000"
+
+    environment:
+      NODE_ENV: production
+      PVE_HOST: ${PVE_HOST}
+      PVE_TOKEN_ID: ${PVE_TOKEN_ID}
+      PVE_TOKEN_SECRET: ${PVE_TOKEN_SECRET}
+      PVE_VERIFY_SSL: ${PVE_VERIFY_SSL:-true}
+      PORT: 3000

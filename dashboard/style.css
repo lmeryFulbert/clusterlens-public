@@ -1,0 +1,468 @@
+/* =========================================================
+   VARIABLES THEME
+========================================================= */
+
+:root {
+    --bg: #111217;
+    --panel: #1b1f27;
+    --panel-dark: #151922;
+    --panel-border: #2b313c;
+
+    --text: #d8d9da;
+    --text-secondary: #9ba2ad;
+
+    --green: #56a64b;
+    --yellow: #e0b400;
+    --orange: #f59e0b;
+    --red: #e24d42;
+    --blue: #3274d9;
+}
+
+
+/* =========================================================
+   RESET / BASE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* =========================================================
+   TYPOGRAPHIE
+========================================================= */
+
+h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.sub-title {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.dashboard {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topbar {
+    height: 64px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #181b21;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.logo h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.logo span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.cluster-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+
+/* =========================================================
+   METRICS CLUSTER
+========================================================= */
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.metric-card {
+    background: var(--panel-dark);
+    border: 1px solid var(--panel-border);
+    padding: 16px;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.metric-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(50,116,217,0.15);
+    color: var(--green);
+    font-size: 22px;
+}
+
+.metric-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-title {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   NODES
+========================================================= */
+
+.nodes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.node-card {
+    background: var(--panel-dark);
+
+    flex: 1 1 calc(33.333% - 16px);
+    min-width: 280px;
+
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.node-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.node-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESSOURCES NODE
+   CPU / RAM / STORAGE
+========================================================= */
+
+.resource {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.resource-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.resource-name {
+    color: var(--text-secondary);
+}
+
+.resource-value {
+    font-weight: 600;
+}
+
+
+/* Affichage stockage */
+
+.storage-value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.95em;
+}
+
+.storage-replication {
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   CAPACITY BAR
+   Vert  : stockage local
+   Orange: réplication ZFS / surcharge HA
+========================================================= */
+
+.capacity-bar {
+    position: relative;
+    display: flex;
+    height: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #262c36;
+}
+
+.segment.used {
+    background: var(--green);
+    z-index: 1;
+}
+
+.segment.overlay {
+    background: var(--orange);
+    color: #111217;
+    opacity: 0.6;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   VM LIST
+========================================================= */
+
+.vm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.vm-table th {
+    text-align: left;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    padding-bottom: 6px;
+}
+
+.vm-table td {
+    padding: 4px 0;
+    vertical-align: top;
+}
+
+.vm-origin {
+    width: 50%;
+    font-size: 0.8rem;
+}
+
+.vm-target {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.vm-chip {
+    width: fit-content;
+    background: #262c36;
+    border: 1px solid var(--panel-border);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+}
+
+.vm-empty {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 12px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--panel-border);
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+
+/* =========================================================
+   BADGES / ETATS
+========================================================= */
+
+.badge {
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-ok {
+    background: rgba(86,166,75,0.2);
+    color: var(--green);
+}
+
+.badge-warning {
+    background: rgba(224,180,0,0.2);
+    color: var(--yellow);
+}
+
+.badge-failed {
+    background: #dc2626;
+    color: white;
+}
+
+.ok {
+    color: var(--green);
+}
+
+.warning {
+    color: var(--yellow);
+}
+
+.critical {
+    color: var(--red);
+}
+
+
+/* =========================================================
+   COLLAPSIBLE PANEL
+========================================================= */
+
+.collapsible-panel summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.collapsible-panel summary::-webkit-details-marker {
+    display: none;
+}
+
+.collapsible-panel h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapse-icon {
+    transition: transform 0.25s ease;
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.collapsible-panel[open] .collapse-icon {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   LEGEND
+========================================================= */
+
+.legend {
+    margin-top: 8px;
+    display: flex;
+    gap: 20px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--panel-border);
+    background: var(--panel);
+}
+
+.footer div {
+    margin: 5px 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width:1200px) {
+    .node-card {
+        flex: 1 1 calc(50% - 16px);
+    }
+}
+
+@media (max-width:768px) {
+    .node-card {
+        flex: 1 1 100%;
+    }
+}
