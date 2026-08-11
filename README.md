@@ -347,6 +347,18 @@ Parmi les évolutions envisagées :
 
 ---
 
+## Auteur
+
+Développé par **Ludovic MERY**, enseignant en BTS SIO au lycée Fulbert de Chartres.
+
+Si vous aimez ClusterLens et souhaitez soutenir son développement, vous pouvez toujours m'offrir une bière. 🍺
+
+Merci également à **ChatGPT**, qui m'a beaucoup aidé à structurer ce projet, à challenger certains choix techniques et à corriger la syntaxe du code.
+
+Pas d'agent de développement ni de génération autonome du projet : ClusterLens a été conçu et développé à la main, avec ChatGPT comme outil de réflexion, d'analyse et d'assistance.
+
+---
+
 ## Licence
 
 ClusterLens est distribué sous licence **GNU General Public License v3.0 (GPL-3.0)**.
