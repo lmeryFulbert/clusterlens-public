@@ -8,19 +8,25 @@ import { registerRoutes } from "./routes/index.js";
 
 async function bootstrap(): Promise<void> {
 
-  const isDevelopment = process.env.NODE_ENV !== "production";
+  async function bootstrap(): Promise<void> {
+
+    const isDevelopment = process.env.NODE_ENV !== "production";
   
-  const app = Fastify({
-    logger: {
-      level: "info",
-      transport: {
-        target: "pino-pretty",
-        options: {
-          colorize: true
-        }
-      }
-    }
-  });
+    const app = Fastify({
+      logger: isDevelopment
+        ? {
+            level: "info",
+            transport: {
+              target: "pino-pretty",
+              options: {
+                colorize: true
+              }
+            }
+          }
+        : {
+            level: "info"
+          }
+    });
 
 
   /**
