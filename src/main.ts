@@ -5,29 +5,24 @@ import path from "node:path";
 import { config } from "./config/env.js";
 import { registerRoutes } from "./routes/index.js";
 
-
 async function bootstrap(): Promise<void> {
+  const isDevelopment = process.env.NODE_ENV !== "production";
 
-  async function bootstrap(): Promise<void> {
-
-    const isDevelopment = process.env.NODE_ENV !== "production";
-  
-    const app = Fastify({
-      logger: isDevelopment
-        ? {
-            level: "info",
-            transport: {
-              target: "pino-pretty",
-              options: {
-                colorize: true
-              }
+  const app = Fastify({
+    logger: isDevelopment
+      ? {
+          level: "info",
+          transport: {
+            target: "pino-pretty",
+            options: {
+              colorize: true
             }
           }
-        : {
-            level: "info"
-          }
-    });
-
+        }
+      : {
+          level: "info"
+        }
+  });
 
   /**
    * Publication du dashboard statique.
@@ -37,7 +32,6 @@ async function bootstrap(): Promise<void> {
     prefix: "/"
   });
 
-
   /**
    * Enregistrement des routes HTTP.
    *
@@ -45,7 +39,6 @@ async function bootstrap(): Promise<void> {
    * compositionRoot.ts et utilisées par les routes.
    */
   await registerRoutes(app);
-
 
   /**
    * Démarrage du serveur.
@@ -55,11 +48,9 @@ async function bootstrap(): Promise<void> {
     host: config.server.host
   });
 
-
   app.log.info(
     `ClusterLens démarré sur ${config.server.host}:${config.server.port}`
   );
 }
-
 
 bootstrap();
